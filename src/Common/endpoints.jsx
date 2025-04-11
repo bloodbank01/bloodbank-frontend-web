@@ -1,8 +1,8 @@
 
 const URL = {
     // API 
-    // baseUrl : 'https://whatsapp-back-end-live.onrender.com/'
-    baseUrl : import.meta.env.VITE_BASE_URL
+    baseUrl : 'https://bloodbank-backend-e8cg.onrender.com/'
+    // baseUrl : import.meta.env.VITE_BASE_URL
 }
 const ENDPOINTS = {
     // API Endpoints
