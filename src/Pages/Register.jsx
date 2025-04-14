@@ -67,8 +67,8 @@ const Register = () => {
             stopLoading()
 
             if (response.status) {
-                await Handler.setItem('token', response.data.jwt)
-                await Handler.setItem('vr', response.data.vr)
+                await localStorage.setItem('token', response.data.jwt)
+                await localStorage.setItem('vr', response.data.vr)
                 success(response.message)
                 navigate('/')
             } else {

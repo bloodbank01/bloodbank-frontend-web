@@ -1,13 +1,7 @@
 import axios from 'axios';
 import ENDPOINTS from '../endpoints';
-import Handler from '../Handler';
-let token = '';
-let vr = ''
-
-(async() => {
-  token =await Handler.getItem('token')
-  vr =await Handler.getItem('vr')
-})()
+let token = localStorage.getItem('token');
+let vr = localStorage.getItem('token');
 
 const apiClient = axios.create({
   baseURL: ENDPOINTS.baseUrl, // Set your base API URL
@@ -16,7 +10,7 @@ const apiClient = axios.create({
     'Authorization': `Bearer ${token}`,
     'Authorization': `vr ${vr}`,
   },
-  // withCredentials: true, 
+  withCredentials: true, 
 });
 
 // Interceptor to conditionally add the token and custom headers
