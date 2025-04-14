@@ -1,8 +1,13 @@
 import axios from 'axios';
 import ENDPOINTS from '../endpoints';
 import Handler from '../Handler';
-let token =await Handler.getItem('token')
-let vr =await Handler.getItem('vr')
+let token = '';
+let vr = ''
+
+(async() => {
+  token =await Handler.getItem('token')
+  vr =await Handler.getItem('vr')
+})()
 
 const apiClient = axios.create({
   baseURL: ENDPOINTS.baseUrl, // Set your base API URL
