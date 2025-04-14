@@ -22,6 +22,7 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/email-verify' element={<EmailVerify />} />
+        {/* <Route index element={<Home />} /> */}
 
         <Route path='/' element={<SecureRoutes />} >
           <Route index element={<Home />} />

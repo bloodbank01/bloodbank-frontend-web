@@ -5,6 +5,8 @@ import Aboute from '../Components/Home/Aboute'
 import Contact from '../Components/Home/Contact'
 import Services from '../Components/Home/Services'
 import Expert from '../Components/Home/Expert'
+import Appointment from '../Components/Home/Appointment'
+import Touch from '../Components/Home/Touch'
 
 const Home = () => {
 
@@ -18,6 +20,8 @@ const Home = () => {
           <Contact />
           <Services />
           <Expert />
+          <Appointment />
+          <Touch />
         </div>
       </main>
     </>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import logoImg from '../../../public/images/logo/logo.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { logout } from '../../Common/Apis/ApiService';
 import { useAlert } from '../../Common/Toasts/AlertProvider';
@@ -13,6 +13,7 @@ const Header = () => {
     const { alert } = useAlert()
     const { success } = useSuccess()
     const { startLoading, stopLoading } = useLoader();
+    const navigate = useNavigate()
 
     useEffect(() => {
         const handleResize = () => {
@@ -39,8 +40,9 @@ const Header = () => {
 
             if (response.status) {
                 localStorage.removeItem('token')
+                localStorage.removeItem('vr')
+                navigate('/sign-in')
                 success(response.message)
-                navigate('/')
             } else {
                 alert(response.message)
             }

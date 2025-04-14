@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { LoaderProvider } from './Common/Loader/useLoader.jsx'
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import 'react-datepicker/dist/react-datepicker.css';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>

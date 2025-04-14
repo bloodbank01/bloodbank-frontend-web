@@ -3,6 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import Handler from '../Common/Handler';
 import { useLoader } from '../Common/Loader/useLoader';
 import Header from '../Components/Header/Header';
+import Footer from '../Components/Footer/Footer';
 
 const SecureRoutes = () => {
   const [auth, setAuth] = useState(null); // null means "still checking"
@@ -37,6 +38,7 @@ const SecureRoutes = () => {
     <>
       <Header />
       <Outlet />
+      <Footer />
     </>
   );
 };
