@@ -123,3 +123,20 @@ export const resetPassword = async (payload) => {
         return { status: false, message: error.response.data.error.message }
     }
 };
+
+export const logout = async (payload) => {
+    try {
+
+        const response = await apiClient.get(ENDPOINTS.logout, payload);
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        return { status: false, message: error.response.data.error.message }
+    }
+};

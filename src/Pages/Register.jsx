@@ -68,6 +68,7 @@ const Register = () => {
 
             if (response.status) {
                 await Handler.setItem('token', response.data.jwt)
+                await Handler.setItem('vr', response.data.vr)
                 success(response.message)
                 navigate('/')
             } else {

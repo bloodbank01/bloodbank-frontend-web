@@ -131,6 +131,10 @@ button{
   background-color: rgba(253, 234, 234, .5);
 }
 
+.text-web-primary{
+  color: #C30000;
+}
+
 /* model css */
 
 /* CSS Modal Animations */
@@ -215,7 +219,17 @@ button{
 
 /* Media Css */
 
-@media (min-width: 280px) {
+@media (min-width: 100px) and (max-width: 279px) {
+  .banner .title h1{
+    font-size: 20px;
+  }
+
+  .banner .sub-title span{
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 280px) and (max-width: 349px){
   .ham-burger{
     width: 22px;
   }
@@ -225,22 +239,33 @@ button{
   }
 }
 
-@media (min-width: 350px) {
+@media (min-width: 350px) and  (max-width: 449px){
   .ham-burger{
     width: 23px;
   }
+
+  .banner{
+    background-position: 50% 50%;
+  }
 }
 
-@media (min-width: 450px) {
+@media (min-width: 450px) and (max-width: 766px) {
   .ham-burger{
     width: 28px;
   }
   .banner .title {
     width: 62%;
   }
+  .banner{
+    background-position: 50% 50%;
+  }
 }
 
 @media (min-width: 768px) {
+  .ham-burger{
+    width: 28px;
+  }
+
   .banner .title {
     width: 60%;
   }

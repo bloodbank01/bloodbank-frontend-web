@@ -2,10 +2,17 @@ import React, { useEffect, useState } from 'react';
 import logoImg from '../../../public/images/logo/logo.png';
 import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { logout } from '../../Common/Apis/ApiService';
+import { useAlert } from '../../Common/Toasts/AlertProvider';
+import { useSuccess } from '../../Common/Toasts/SuccessProvider';
+import { useLoader } from '../../Common/Loader/useLoader';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const { alert } = useAlert()
+    const { success } = useSuccess()
+    const { startLoading, stopLoading } = useLoader();
 
     useEffect(() => {
         const handleResize = () => {
@@ -23,6 +30,27 @@ const Header = () => {
             setIsOpen(false);
         }
     }, [screenWidth]);
+
+    const handleLogout = async () => {
+        try {
+            startLoading()
+            const response = await logout()
+            stopLoading()
+
+            if (response.status) {
+                localStorage.removeItem('token')
+                success(response.message)
+                navigate('/')
+            } else {
+                alert(response.message)
+            }
+
+        } catch (error) {
+            console.log(error)
+            stopLoading()
+            alert("Please Try Again!")
+        }
+    };
 
     const navItems = [
         { to: '/', label: 'Home' },
@@ -59,6 +87,11 @@ const Header = () => {
                                     </NavLink>
                                 </li>
                             ))}
+                            <li>
+                                <button onClick={handleLogout} className={`text-primary font-medium text-black`}>
+                                   Logout
+                                </button>
+                            </li>
                         </ul>
                         <button type="button" className="bg-primary py-1.5 px-7 tracking-wider rounded-md text-white text-sm font-semibold">
                             Donate

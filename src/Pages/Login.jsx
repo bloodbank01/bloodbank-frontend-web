@@ -35,7 +35,8 @@ const Login = () => {
             stopLoading()
 
             if (response.status) {
-                localStorage.setItem('token', response.data.jwt)
+                await Handler.setItem('token', response.data.jwt)
+                await Handler.setItem('vr', response.data.vr)
                 success(response.message)
                 navigate('/')
             } else {
@@ -60,6 +61,7 @@ const Login = () => {
 
             if (response.status) {
                 await Handler.setItem('token', response.data.jwt)
+                await Handler.setItem('vr', response.data.vr)
                 success(response.message)
                 navigate('/')
             } else {
