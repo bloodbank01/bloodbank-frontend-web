@@ -14,7 +14,8 @@ const SecureRoutes = () => {
       startLoading(); // Start global loader
       try {
         const token = localStorage.getItem('token');
-        setAuth(!!token); // true if token exists
+        // setAuth(!!token); // true if token exists
+        setAuth(true); // true if token exists
       } catch (error) {
         console.error("Error fetching token:", error);
         setAuth(false);

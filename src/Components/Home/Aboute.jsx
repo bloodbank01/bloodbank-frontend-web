@@ -5,7 +5,7 @@ import { BsCheck } from "react-icons/bs";
 
 const Aboute = () => {
     return (
-        <section className='w-full py-6 pt-12 sm:pt-13 md:pt-15 xl:pt-35'>
+        <section className='w-full py-4 sm:pt-13 md:pt-15 xl:pt-35'>
             <div className="container mx-auto">
                 <div className="w-full">
                     <div className="w-full flex flex-wrap px-2 sm:flex sm:justify-center md:justify-start">

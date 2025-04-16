@@ -33,7 +33,7 @@ const Donate = () => {
                                     <div className="w-full px-3 py-4 lg:p-8">
                                         <div className="w-full">
                                             <h4 className='text-[23px] md:text-[21px] xl:text-[28px] lg:text-[26px] sm:text-[24px] text-white font-semibold tracking-widest'>Request Now</h4>
-                                            <p className='text-[12px] md:text-[11px] lg:text-[16px] pe-5 sm:pe-20 sm:text-[14px] lg:pe-0 lg:w-5/6 text-[#C8C8C8] xl:w-6/8 mt-4'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+                                            <p className='text-[12px] md:text-[11px] lg:text-[16px] pe-5 sm:pe-20 sm:text-[14px] lg:pe-0 lg:w-5/6 text-[#C8C8C8] xl:w-6/8 mt-4'>We kindly request you to donate blood and help save lives—your single donation can make a world of difference to someone in need. Join us in this life-saving mission today!</p>
                                             <div className="icon w-full flex justify-end pt-4">
                                                 <button>
                                                     <div className='w-2/4 lg:w-2/3 '>
@@ -48,7 +48,7 @@ const Donate = () => {
                                     <div className="w-full px-3 py-4 lg:p-8">
                                         <div className="w-full">
                                             <h4 className='text-[23px] md:text-[21px] xl:text-[28px] lg:text-[26px] sm:text-[24px] text-white font-semibold tracking-widest'>Donate Now</h4>
-                                            <p className='text-[12px] md:text-[11px] lg:text-[16px] pe-5 sm:pe-20 sm:text-[14px] lg:pe-0 lg:w-5/6 text-[#C8C8C8] xl:w-6/8 mt-4'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
+                                            <p className='text-[12px] md:text-[11px] lg:text-[16px] pe-5 sm:pe-20 sm:text-[14px] lg:pe-0 lg:w-5/6 text-[#C8C8C8] xl:w-6/8 mt-4'>Your donation can bring hope and healing to those in need. A small act from you can save a life. Donate today and make a difference!</p>
                                             <div className="icon w-full flex justify-end pt-4">
                                                 <button>
                                                     <div className='w-2/4 lg:w-2/3 '>

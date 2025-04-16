@@ -152,6 +152,31 @@ input[type=number] {
   color: #C30000;
 }
 
+.swiper-slid{
+  padding: 0 25px !important;
+}
+
+.swiper-button-next{
+  position: absolute !important;
+  right:  0px !important;
+}
+
+.swiper-button-prev{
+  position: absolute !important;
+  left:  0px !important;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-family: swiper-icons;
+  font-size: 20px !important;
+  text-transform: none !important;
+  letter-spacing: 0;
+  font-variant: initial;
+  line-height: 1;
+  font: 900 !important;
+  color: #FF0000;
+}
+
 /* model css */
 
 /* CSS Modal Animations */
@@ -272,6 +297,15 @@ input[type=number] {
   }
   .banner .title {
     width: 62%;
+    text-align: left;
+  }
+
+  .banner-btn{
+    text-align: left;
+  }
+
+  .banner .sub-title {
+    text-align: left;
   }
   .banner{
     background-position: 50% 50%;
