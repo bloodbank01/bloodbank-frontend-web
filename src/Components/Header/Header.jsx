@@ -91,7 +91,7 @@ const Header = () => {
                             ))}
                             <li>
                                 <button onClick={handleLogout} className={`text-primary font-medium text-black`}>
-                                   Logout
+                                    Logout
                                 </button>
                             </li>
                         </ul>
@@ -120,6 +120,11 @@ const Header = () => {
                                         </NavLink>
                                     </li>
                                 ))}
+                                <li>
+                                    <button onClick={handleLogout} className={`text-primary font-medium text-black`}>
+                                        Logout
+                                    </button>
+                                </li>
                             </ul>
                             {/* <button type="button" className=" w-full bg-primary py-2 rounded-md text-white text-sm font-semibold">
                                 Donate

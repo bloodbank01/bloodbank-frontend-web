@@ -3,8 +3,16 @@ import apiClient from './ApiClient';
 import ENDPOINTS from '../endpoints';
 
 const tokens = async () => {
-    let token = JSON.parse(localStorage.getItem('token'))
+    let token = localStorage.getItem('token')
     return token
+}
+
+const errorResponse = (error) => {
+    if(error.status == 401){
+        localStorage.removeItem('token')
+    }
+
+    return { status: false, message: error.response.data.error.message }
 }
 
 const validRespones = async (res) => {
@@ -34,7 +42,7 @@ export const signUp = async (payload) => {
         return { status: true, message: res.message, data: res.data }
 
     } catch (error) {
-        return { status: false, message: error.response.data.error.message }
+        return errorResponse(error)
     }
 };
 
@@ -51,7 +59,7 @@ export const emailVerify = async (payload) => {
         return { status: true, message: res.message, data: res.data }
 
     } catch (error) {
-        return { status: false, message: error.response.data.error.message }
+        return errorResponse(error)
     }
 };
 
@@ -68,7 +76,7 @@ export const signIn = async (payload) => {
         return { status: true, message: res.message, data: res.data }
 
     } catch (error) {
-        return { status: false, message: error.response.data.error.message }
+        return errorResponse(error)
     }
 };
 
@@ -86,7 +94,7 @@ export const googleSSO = async (payload) => {
 
     } catch (error) {
         console.log(error, 'hello  New Error:---------->')
-        return { status: false, message: error.response.data.error.message }
+        return errorResponse(error)
     }
 };
 
@@ -103,7 +111,7 @@ export const forgotPassword = async (payload) => {
         return { status: true, message: res.message, data: res.data }
 
     } catch (error) {
-        return { status: false, message: error.response.data.error.message }
+        return errorResponse(error)
     }
 };
 
@@ -120,7 +128,7 @@ export const resetPassword = async (payload) => {
         return { status: true, message: res.message, data: res.data }
 
     } catch (error) {
-        return { status: false, message: error.response.data.error.message }
+        return errorResponse(error)
     }
 };
 
@@ -137,6 +145,6 @@ export const logout = async (payload) => {
         return { status: true, message: res.message, data: res.data }
 
     } catch (error) {
-        return { status: false, message: error.response.data.error.message }
+        return errorResponse(error)
     }
 };
