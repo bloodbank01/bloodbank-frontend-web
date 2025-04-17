@@ -22,7 +22,7 @@ const Appointment = () => {
                                         <h2 className='text-[#C30000] font-semibold tracking-wide text-[22px] pb-5'>Current Blood Request</h2>
 
                                         <div className="w-full">
-                                            <ul className='flex flex-col w-full w-4/5'>
+                                            <ul className='flex flex-col w-full'>
                                                 <li className='border-b py-4 border-[#D4D4D4]'>
                                                     <div className='flex w-full gap-4 items-center'>
                                                         <div className='w-[14px] h-auto'>

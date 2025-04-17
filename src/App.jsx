@@ -11,6 +11,7 @@ import Register from './Pages/Register'
 import ForgotPassword from './Pages/ForgotPassword'
 import ResetPassword from './Pages/ResetPassword'
 import EmailVerify from './Pages/EmailVerify'
+import Contact from './Pages/Contact'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
 
         <Route path='/' element={<SecureRoutes />} >
           <Route index element={<Home />} />
+          <Route path='contact-us' element={<Contact />} />
         </Route>
 
       </Routes>

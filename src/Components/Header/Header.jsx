@@ -60,7 +60,7 @@ const Header = () => {
         { to: '/pages', label: 'Pages' },
         { to: '/event', label: 'Event' },
         { to: '/news', label: 'News' },
-        { to: '/contact', label: 'Contact Us' },
+        { to: '/contact-us', label: 'Contact Us' },
     ];
 
     return (
