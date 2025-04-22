@@ -64,6 +64,17 @@ button{
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+.box-shadow-full{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 22px 0px;
+}
+.box-shadow-right-full{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 22px 0px;
+}
+
+.transform-translate{
+  transform: translate(-50%, -50%) !important;
+}
+
 /* .text-grey{
   color: #bf6161 !important;
 } */
@@ -150,6 +161,10 @@ input[type=number] {
 
 .text-web-primary{
   color: #C30000;
+}
+
+.bg-web-primary{
+  background-color: #C30000;
 }
 
 .swiper-slid{
@@ -261,7 +276,44 @@ input[type=number] {
 
 /* Media Css */
 
-@media (min-width: 100px) and (max-width: 279px) {
+@media (min-width: 100px) and (max-width: 200px) {
+
+  .dash-3{
+    top: 830px;
+  }
+
+  .dash-1{
+    top: 185px;
+  }
+
+  .dash-2{
+    top: 508px;
+  }
+  
+  .banner .title h1{
+    font-size: 20px;
+  }
+
+  .banner .sub-title span{
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 201px) and (max-width: 279px) {
+
+  .dash-3{
+    top: 775px;
+    height: 250px;
+  }
+
+  .dash-1{
+    top: 185px;
+  }
+
+  .dash-2{
+    top: 490px;
+  }
+  
   .banner .title h1{
     font-size: 20px;
   }
@@ -272,6 +324,16 @@ input[type=number] {
 }
 
 @media (min-width: 280px) and (max-width: 349px){
+  .dash-3{
+    top: 580px;
+    height: 230px;
+  }
+
+  .dash-2{
+    top: 350px;
+    height: 230px;
+  }
+
   .ham-burger{
     width: 22px;
   }
@@ -282,6 +344,15 @@ input[type=number] {
 }
 
 @media (min-width: 350px) and  (max-width: 449px){
+  .dash-3{
+    top: 570px;
+    height: 230px;
+  }
+
+  .dash-2{
+    top: 360px;
+  }
+
   .ham-burger{
     width: 23px;
   }
@@ -291,7 +362,42 @@ input[type=number] {
   }
 }
 
+@media (min-width: 450px) and  (max-width: 460px){
+  .dash-3{
+    top: 580px;
+  }
+  .ham-burger{
+    width: 28px;
+  }
+  .banner .title {
+    width: 62%;
+    text-align: left;
+  }
+
+  .banner-btn{
+    text-align: left;
+  }
+
+  .banner .sub-title {
+    text-align: left;
+  }
+  .banner{
+    background-position: 50% 50%;
+  }
+}
+
 @media (min-width: 450px) and (max-width: 766px) {
+  .dash-1{
+    top : 111px
+  }
+
+  .dash-2{
+    top : 320px
+  }
+
+  .dash-1{
+    top : 111px
+  }
   .ham-burger{
     width: 28px;
   }

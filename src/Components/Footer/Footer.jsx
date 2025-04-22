@@ -168,7 +168,7 @@ const Footer = () => {
                                                     <img src={news1} className='w-full h-full object-cover' alt="" />
                                                 </div>
                                             </div>
-                                            <p className='w-full text-[13px] xl:text-[14px] text-[#4B4B4B] text-[14px] md:w-[calc(100%-80px)] lg:px-4 lg:pe-15 pe-1'>
+                                            <p className='w-full text-[13px] xl:text-[14px] text-[#4B4B4B] md:w-[calc(100%-80px)] lg:px-4 lg:pe-15 pe-1'>
                                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
                                             </p>
                                         </li>
@@ -179,7 +179,7 @@ const Footer = () => {
                                                     <img src={news2} className='w-full h-full object-cover' alt="" />
                                                 </div>
                                             </div>
-                                            <p className='w-full text-[13px] xl:text-[14px] text-[#4B4B4B] text-[14px] md:w-[calc(100%-80px)] lg:px-4 lg:pe-15 pe-1'>
+                                            <p className='w-full text-[13px] xl:text-[14px] text-[#4B4B4B] md:w-[calc(100%-80px)] lg:px-4 lg:pe-15 pe-1'>
                                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
                                             </p>
                                         </li>

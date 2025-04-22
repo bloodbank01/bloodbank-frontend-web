@@ -12,6 +12,7 @@ import ForgotPassword from './Pages/ForgotPassword'
 import ResetPassword from './Pages/ResetPassword'
 import EmailVerify from './Pages/EmailVerify'
 import Contact from './Pages/Contact'
+import About from './Pages/About'
 
 function App() {
 
@@ -23,11 +24,12 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/email-verify' element={<EmailVerify />} />
+        <Route path='/contact-us' element={<Contact />} />
+        <Route path='/about' element={<About />} />
         {/* <Route index element={<Home />} /> */}
 
         <Route path='/' element={<SecureRoutes />} >
           <Route index element={<Home />} />
-          <Route path='contact-us' element={<Contact />} />
         </Route>
 
       </Routes>
