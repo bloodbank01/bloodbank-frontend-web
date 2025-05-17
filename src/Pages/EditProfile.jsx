@@ -198,7 +198,7 @@ const EditProfile = () => {
       }
 
     })()
-  }, [third])
+  }, [])
 
 
   const navigate = useNavigate();
