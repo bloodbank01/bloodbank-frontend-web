@@ -1,21 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import bloodImg from '../../../public/images/home/blood.png'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from "react-router";
 import { useAlert } from '../../Common/Toasts/AlertProvider';
 import { useLoader } from '../../Common/Loader/useLoader'
 import { useSuccess } from '../../Common/Toasts/SuccessProvider'
 import { useNavigate } from 'react-router';
-import { createAppointment } from '../../Common/Apis/ApiService'
+import { createAppointment, getBloodGroup, getHospital } from '../../Common/Apis/ApiService'
+import { bloodGroupList, hospitalList } from '../../Redux/Action'
 
 const Appointment = () => {
 
     const hospitalData = useSelector(state => state.handle.hospitalList);
     const bloodGroupData = useSelector(state => state.handle.bloodGroupList);
     const doctorData = useSelector(state => state.handle.doctorList);
-
+    let dispatch = useDispatch()
     const navigate = useNavigate();
     const { alert } = useAlert()
     const { success } = useSuccess()
@@ -59,6 +60,34 @@ const Appointment = () => {
             alert("Please Try Again!")
         }
     }
+
+    useEffect(() => {
+        (async () => {
+            try {
+                startLoading()
+                const response = await getHospital()
+                const blood_group_list = await getBloodGroup()
+
+                if (response.status) {
+                    dispatch(hospitalList(response.data))
+                } else {
+                    alert(response.message)
+                }
+
+                if (blood_group_list.status) {
+                    dispatch(bloodGroupList(blood_group_list.data))
+                } else {
+                    alert(blood_group_list.message)
+                }
+                stopLoading()
+
+            } catch (error) {
+                console.log(error)
+                stopLoading()
+                alert("Please Try Again!")
+            }
+        })()
+    }, [])
 
     return (
         <section className='px-2 md:px-0'>
