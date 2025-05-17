@@ -1,8 +1,64 @@
 import React, { useState } from 'react'
 import bloodImg from '../../../public/images/home/blood.png'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import { useSelector } from 'react-redux'
+import { useLocation } from "react-router";
+import { useAlert } from '../../Common/Toasts/AlertProvider';
+import { useLoader } from '../../Common/Loader/useLoader'
+import { useSuccess } from '../../Common/Toasts/SuccessProvider'
+import { useNavigate } from 'react-router';
+import { createAppointment } from '../../Common/Apis/ApiService'
+
 const Appointment = () => {
 
-    const [startDate, setStartDate] = useState(new Date());
+    const hospitalData = useSelector(state => state.handle.hospitalList);
+    const bloodGroupData = useSelector(state => state.handle.bloodGroupList);
+    const doctorData = useSelector(state => state.handle.doctorList);
+
+    const navigate = useNavigate();
+    const { alert } = useAlert()
+    const { success } = useSuccess()
+    const { startLoading, stopLoading } = useLoader();
+
+    const initialValues = {
+        first_name: '',
+        last_name: '',
+        phone_no: '',
+        hospital_id: '',
+        request_type: '',
+        message: ''
+    }
+
+    const validationSchema = Yup.object({
+        first_name: Yup.string().required('First Name is required'),
+        last_name: Yup.string().required('Last Name is required'),
+        phone_no: Yup.string().required('Phone number is required'),
+        hospital_id: Yup.string().required('Hospita required'),
+        blood_id: Yup.string().required('Blood Group required'),
+        request_type: Yup.string().required('Request Type is required'),
+        message: Yup.string().required('Message is required')
+    })
+
+    const onSubmit = async (data) => {
+        try {
+            startLoading()
+            const response = await createAppointment({...data, phone_no : data.phone_no?.toString()})
+            stopLoading()
+
+            if (response.status) {
+                success(response.message)
+                window.location.reload()
+            } else {
+                alert(response.message)
+            }
+
+        } catch (error) {
+            console.log(error)
+            stopLoading()
+            alert("Please Try Again!")
+        }
+    }
 
     return (
         <section className='px-2 md:px-0'>
@@ -136,61 +192,136 @@ const Appointment = () => {
                                     <div className="w-full px-4 pt-6 pb-12">
                                         <h2 className='text-[#C30000] font-semibold tracking-wide text-[22px] pb-5'>Get Appointment</h2>
 
-                                        <div className="w-full flex flex-wrap gap-4">
-                                            <div className="w-full flex flex-wrap gap-4 lg:gap-0">
-                                                <div className="w-full lg:w-1/2 lg:pe-2">
-                                                    <div className="w-full p-3 border rounded-md border-[#B5B5B5]">
-                                                        <input className='w-full' type="text" name='name' placeholder='Name' />
+                                        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+                                            <Form className="w-full flex flex-wrap gap-4">
+                                                <div className="w-full flex flex-wrap gap-4 lg:gap-0">
+                                                    <div className="w-full lg:w-1/2 lg:pe-2">
+                                                        <Field
+                                                            name="first_name"
+                                                            placeholder="First Name"
+                                                            className="w-full p-3 border rounded-md border-[#B5B5B5]"
+                                                            type="text"
+                                                        />
+                                                        <ErrorMessage name="first_name" component="div" className="text-red-500 text-sm mt-1" />
+                                                    </div>
+                                                    <div className="w-full lg:w-1/2 lg:ps-2">
+                                                        <Field
+                                                            name="last_name"
+                                                            placeholder="Last Name"
+                                                            className="w-full p-3 border rounded-md border-[#B5B5B5]"
+                                                            type="text"
+                                                        />
+                                                        <ErrorMessage name="last_name" component="div" className="text-red-500 text-sm mt-1" />
                                                     </div>
                                                 </div>
 
-                                                <div className="w-full lg:w-1/2 lg:ps-2">
-                                                    <div className="w-full p-3 border rounded-md border-[#B5B5B5]">
-                                                        <input className='w-full' type="email" name='email' placeholder='Email' />
+                                                <div className="w-full flex flex-wrap gap-4 lg:gap-0">
+                                                    <div className="w-full lg:w-1/2 lg:pe-2">
+                                                        <Field
+                                                            name="phone_no"
+                                                            placeholder="Phone"
+                                                            className="w-full p-3 border rounded-md border-[#B5B5B5]"
+                                                            type="number"
+                                                        />
+                                                        <ErrorMessage name="phone_no" component="div" className="text-red-500 text-sm mt-1" />
+                                                    </div>
+                                                    {/* <div className="w-full lg:w-1/2 lg:ps-2">
+                                                        <Field
+                                                            name="hospital_id"
+                                                            placeholder="Hospital"
+                                                            className="w-full p-3 border rounded-md border-[#B5B5B5]"
+                                                            type="text"
+                                                        />
+                                                        <ErrorMessage name="hospital_id" component="div" className="text-red-500 text-sm mt-1" />
+                                                    </div> */}
+                                                    <div className="w-full lg:w-1/2 lg:ps-2">
+                                                        <div className="mb-4 w-full relative">
+                                                            <label className="block text-sm font-medium text-gray-700 mb-1 absolute left-[10px] px-1 top-[-10px] bg-white">
+                                                                Hospital <span className="text-red-500">*</span>
+                                                            </label>
+                                                            <Field as="select" name="hospital_id" className="outline-none p-3 py-[13px] pe-4 border rounded-md border-[#B5B5B5] w-full" >
+                                                                <option value="">Select Hospital</option>
+
+                                                                {hospitalData.map((el) => (
+                                                                    <option value={el.id}>{el.name}</option>
+                                                                ))}
+
+                                                            </Field>
+                                                            <ErrorMessage name="hospital_id" component="div" className="text-red-500 text-sm mt-1" />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div className="w-full flex flex-wrap gap-4 lg:gap-0">
-                                                <div className="w-full lg:w-1/2 lg:pe-2">
-                                                    <div className="w-full p-3 border rounded-md border-[#B5B5B5]">
-                                                        <input className='w-full' type="number" name='mobile_no' placeholder='Phone' />
+                                                <div className="w-full flex flex-wrap gap-4 lg:gap-0">
+                                                    {/* <div className="w-full lg:w-1/2 lg:pe-2">
+                                                        <Field
+                                                            name="time"
+                                                            className="w-full p-3 border rounded-md border-[#B5B5B5]"
+                                                            type="time"
+                                                        />
+                                                        <ErrorMessage name="time" component="div" className="text-red-500 text-sm mt-1" />
+                                                    </div> */}
+                                                    <div className="w-full lg:w-1/2 lg:pe-2">
+                                                        <div className="mb-4 w-full relative">
+                                                            <label className="block text-sm font-medium text-gray-700 mb-1 absolute left-[10px] px-1 top-[-10px] bg-white">
+                                                                Blood Group <span className="text-red-500">*</span>
+                                                            </label>
+                                                            <Field as="select" name="blood_id" className="outline-none p-3 py-[13px] pe-4 border rounded-md border-[#B5B5B5] w-full" >
+                                                                <option value="">Select Blood Group</option>
+                                                                {bloodGroupData.map((el) => (
+                                                                    <option value={el.id}>{el.name}</option>
+                                                                ))}
+                                                            </Field>
+                                                            <ErrorMessage name="blood_id" component="div" className="text-red-500 text-sm mt-1" />
+                                                        </div>
                                                     </div>
+
+
+                                                    <div className="w-full lg:w-1/2 lg:ps-2">
+                                                        <div className="mb-4 w-full relative">
+                                                            <label className="block text-sm font-medium text-gray-700 mb-1 absolute left-[10px] px-1 top-[-10px] bg-white">
+                                                                Request Type <span className="text-red-500">*</span>
+                                                            </label>
+                                                            <Field as="select" name="request_type" className="outline-none p-3 py-[13px] pe-4 border rounded-md border-[#B5B5B5] w-full" >
+                                                                <option value="">Select Request Type</option>
+                                                                <option value="Donate">Donate</option>
+                                                                <option value="Get_blood">Get Blood</option>
+                                                            </Field>
+                                                            <ErrorMessage name="request_type" component="div" className="text-red-500 text-sm mt-1" />
+                                                        </div>
+                                                    </div>
+
+                                                    {/* <div className="w-full lg:w-1/2 lg:ps-2">
+                                                        <Field
+                                                            name="date"
+                                                            className="w-full p-3 border rounded-md border-[#B5B5B5]"
+                                                            type="date"
+                                                        />
+                                                        <ErrorMessage name="date" component="div" className="text-red-500 text-sm mt-1" />
+                                                    </div> */}
                                                 </div>
 
-                                                <div className="w-full lg:w-1/2 lg:ps-2">
-                                                    <div className="w-full p-3 border rounded-md border-[#B5B5B5]">
-                                                        <input className='w-full' type="text" name='center_name' placeholder='Donation Center' />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="w-full flex flex-wrap gap-4 lg:gap-0">
-                                                <div className="w-full lg:w-1/2 lg:pe-2">
-                                                    <div className="w-full p-3 border rounded-md border-[#B5B5B5]">
-                                                        <input className='w-full' type="date" name='date' placeholder='Date' />
-                                                    </div>
-                                                </div>
-
-                                                <div className="w-full lg:w-1/2 lg:ps-2">
-                                                    <div className="w-full p-3 border rounded-md border-[#B5B5B5]">
-                                                        <input className='w-full' type="time" name='time' placeholder='Time' />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="w-full flex">
                                                 <div className="w-full">
-                                                    <textarea name="message" rows={6} className='border rounded-md w-full border-[#B5B5B5] px-4 py-2 outline-0' placeholder='Message'></textarea>
+                                                    <Field
+                                                        as="textarea"
+                                                        name="message"
+                                                        rows={6}
+                                                        placeholder="Message"
+                                                        className="border rounded-md w-full border-[#B5B5B5] px-4 py-2 outline-0"
+                                                    />
+                                                    <ErrorMessage name="message" component="div" className="text-red-500 text-sm mt-1" />
                                                 </div>
-                                            </div>
 
-                                            <div className="w-full flex justify-center md:justify-start">
-                                                <button type="button" className="mt-2 w-full md:w-auto bg-primary py-2 text-[16px] px-8 tracking-wider rounded-sm text-white md:text-[14px] lg:text-[15px] xl:text-[16px]">
-                                                    Submit Now
-                                                </button>
-                                            </div>
-                                        </div>
+                                                <div className="w-full flex justify-center md:justify-start">
+                                                    <button
+                                                        type="submit"
+                                                        className="mt-2 w-full md:w-auto bg-primary py-2 text-[16px] px-8 tracking-wider rounded-sm text-white md:text-[14px] lg:text-[15px] xl:text-[16px]"
+                                                    >
+                                                        Submit Now
+                                                    </button>
+                                                </div>
+                                            </Form>
+                                        </Formik>
                                     </div>
                                 </div>
                             </div>

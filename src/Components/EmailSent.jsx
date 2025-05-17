@@ -41,7 +41,7 @@ const EmailSent = ({ text=null, subText=null, setValue, navigateTo }) => {
                         <h3 className='mt-6 text-[28px] font-semibold text-center'>
                             {text ? text : 'Registration Email has been sent to your email!'}
                         </h3>
-                        <p className='text-[#7B7B7B] my-1'>{subText ? subText : 'subTextPlease check your inbox and verify.'}</p>
+                        <p className='text-[#7B7B7B] my-1'>{subText ? subText : 'Please check your inbox and verify.'}</p>
                         <button
                             onClick={handleClose}
                             className='mt-5 bg-primary rounded-md px-5 py-2 text-white text-[18px] font-semibold tracking-wider'>

@@ -23,6 +23,13 @@ apiClient.interceptors.request.use(
       config.headers['vr'] = vr; // custom header name
     }
 
+    if (config.is_file) {
+      console.log(config.headers, 'headers')
+      config.headers['Authorization'] = `Bearer ${token}`;
+      config.headers['vr'] = vr;
+      config.headers['Content-Type'] = 'multipart/form-data';
+    }
+    
     // Merge any additional custom headers
     if (config.customHeaders) {
       config.headers = { ...config.headers, ...config.customHeaders };

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from "@react-oauth/google";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -37,6 +37,7 @@ const Login = () => {
             if (response.status) {
                 await localStorage.setItem('token', response.data.jwt)
                 await localStorage.setItem('vr', response.data.vr)
+                await localStorage.setItem('email', response.data.user.email)
                 success(response.message)
                 navigate('/')
             } else {

@@ -1,6 +1,59 @@
 import React from 'react'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import { useAlert } from '../../Common/Toasts/AlertProvider'
+import { useSuccess } from '../../Common/Toasts/SuccessProvider'
+import { useLoader } from '../../Common/Loader/useLoader'
+import { useNavigate } from 'react-router'
+import { createContact } from '../../Common/Apis/ApiService'
 
 const ContactTouch = () => {
+
+  const navigate = useNavigate()
+
+  const { alert } = useAlert()
+  const { success } = useSuccess()
+  const { startLoading, stopLoading } = useLoader();
+
+  
+const initialValues = {
+  first_name: '',
+  last_name: '',
+  email: '',
+  phone_no: '',
+  message: ''
+}
+
+const validationSchema = Yup.object({
+  first_name: Yup.string().required('First name is required'),
+  last_name: Yup.string().required('Last name is required'),
+  email: Yup.string().email('Invalid email address').required('Email is required'),
+  phone_no: Yup.string().required('Mobile number is required'),
+  message: Yup.string().required('Message is required')
+})
+
+const onSubmit = async (data) => {
+  console.log('Form data:', data)
+  try {
+    startLoading()
+    const response = await createContact(data)
+    stopLoading()
+
+    if (response.status) {
+      success(response.message)
+      navigate('/')
+    } else {
+      alert(response.message)
+    }
+
+  } catch (error) {
+    console.log(error)
+    stopLoading()
+    alert("Please Try Again!")
+  }
+}
+
+
   return (
     <section className='pb-15 pt-10 g:py-15 px-2 lg:px-0'>
       <div className="container mx-auto">
@@ -21,47 +74,83 @@ const ContactTouch = () => {
             </div>
             <div className="w-full md:w-1/2 lg:w-4/7 md:ps-3 lg:ps-0">
               <div className="w-full">
-                <div className="w-full flex flex-wrap gap-4 lg:gap-6">
-                  <div className="w-full flex gap-4 flex-wrap lg:gap-0">
-                    <div className="w-full lg:w-1/2 lg:pe-3">
-                      <div className="w-full border border-[#9A9791] p-4">
-                        <input type="text" className='w-full' placeholder='First Name' name='first_name' />
+                <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+                  <Form className="w-full flex flex-wrap gap-4 lg:gap-6">
+                    <div className="w-full flex gap-4 flex-wrap lg:gap-0">
+                      <div className="w-full lg:w-1/2 lg:pe-3">
+                        <div className="w-full">
+                          <Field
+                            type="text"
+                            name="first_name"
+                            placeholder="First Name"
+                            className="w-full border border-[#9A9791] p-4"
+                          />
+                          <ErrorMessage name="first_name" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
+                      </div>
+
+                      <div className="w-full lg:w-1/2 lg:ps-3">
+                        <div className="w-full">
+                          <Field
+                            type="text"
+                            name="last_name"
+                            placeholder="Last Name"
+                            className="w-full border border-[#9A9791] p-4"
+                          />
+                          <ErrorMessage name="last_name" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
                       </div>
                     </div>
 
-                    <div className="w-full lg:w-1/2 lg:ps-3">
-                      <div className="w-full border border-[#9A9791] p-4">
-                        <input type="text" className='w-full' placeholder='Last Name' name='last_name' />
+                    <div className="w-full flex gap-4 flex-wrap lg:gap-0">
+                      <div className="w-full lg:w-1/2 lg:pe-3">
+                        <div className="w-full">
+                          <Field
+                            type="email"
+                            name="email"
+                            placeholder="E-mail Address"
+                            className="w-full border border-[#9A9791] p-4"
+                          />
+                          <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
+                      </div>
+
+                      <div className="w-full lg:w-1/2 lg:ps-3">
+                        <div className="w-full">
+                          <Field
+                            type="text"
+                            name="phone_no"
+                            placeholder="Mobile Number"
+                            className="w-full border border-[#9A9791] p-4"
+                          />
+                          <ErrorMessage name="phone_no" component="div" className="text-red-500 text-sm mt-1" />
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="w-full flex gap-4 flex-wrap lg:gap-0">
-                    <div className="w-full lg:w-1/2 lg:pe-3">
-                      <div className="w-full border border-[#9A9791] p-4">
-                        <input type="text" className='w-full' placeholder='E-mail Address' name='email' />
+                    <div className="w-full flex gap-4 flex-wrap lg:gap-0">
+                      <div className="w-full">
+                        <Field
+                          as="textarea"
+                          name="message"
+                          rows={5}
+                          placeholder="Message *"
+                          className="border w-full border-[#9A9791] px-4 py-2 outline-0"
+                        />
+                        <ErrorMessage name="message" component="div" className="text-red-500 text-sm mt-1" />
                       </div>
                     </div>
 
-                    <div className="w-full lg:w-1/2 lg:ps-3">
-                      <div className="w-full border border-[#9A9791] p-4">
-                        <input type="text" className='w-full' placeholder='Mobile Number' name='mobile_no' />
-                      </div>
+                    <div className="w-full flex justify-center md:justify-start">
+                      <button
+                        type=""
+                        className="w-full md:w-auto bg-primary py-2 text-[16px] px-8 tracking-wider rounded-sm text-white md:text-[14px] lg:text-[15px] xl:text-[16px]"
+                      >
+                        Submit
+                      </button>
                     </div>
-                  </div>
-
-                  <div className="w-full flex gap-4 flex-wrap lg:gap-0">
-                    <div className="w-full">
-                      <textarea name="message" rows={5} className='border w-full border-[#9A9791] px-4 py-2 outline-0' placeholder='Message *'></textarea>
-                    </div>
-                  </div>
-
-                  <div className="w-full flex justify-center md:justify-start">
-                    <button type="button" className="w-full md:w-auto bg-primary py-2 text-[16px] px-8 tracking-wider rounded-sm text-white md:text-[14px] lg:text-[15px] xl:text-[16px]">
-                      Submit
-                    </button>
-                  </div>
-                </div>
+                  </Form>
+                </Formik>
               </div>
             </div>
           </div>

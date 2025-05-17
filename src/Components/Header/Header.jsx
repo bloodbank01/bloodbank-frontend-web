@@ -39,10 +39,9 @@ const Header = () => {
             stopLoading()
 
             if (response.status) {
-                localStorage.removeItem('token')
-                localStorage.removeItem('vr')
-                navigate('/sign-in')
-                success(response.message)
+                window.localStorage.clear();
+                navigate('/sign-in');
+                success(response.message);
             } else {
                 alert(response.message)
             }
@@ -57,10 +56,9 @@ const Header = () => {
     const navItems = [
         { to: '/', label: 'Home' },
         { to: '/about', label: 'About Us' },
-        { to: '/pages', label: 'Pages' },
-        { to: '/event', label: 'Event' },
-        { to: '/news', label: 'News' },
         { to: '/contact-us', label: 'Contact Us' },
+        { to: '/profile', label: 'Profile' },
+        { to: '/appointment', label: 'Appointment' },
     ];
 
     return (
@@ -89,14 +87,9 @@ const Header = () => {
                                     </NavLink>
                                 </li>
                             ))}
-                            <li>
-                                <button onClick={handleLogout} className={`text-primary font-medium text-black`}>
-                                    Logout
-                                </button>
-                            </li>
                         </ul>
-                        <button type="button" className="bg-primary py-1.5 px-7 tracking-wider rounded-md text-white text-sm font-semibold">
-                            Donate
+                        <button onClick={handleLogout} type="button" className="bg-primary py-1.5 px-7 tracking-wider rounded-md text-white text-sm font-semibold">
+                            Logout
                         </button>
                     </div>
                 </div>
@@ -120,19 +113,14 @@ const Header = () => {
                                         </NavLink>
                                     </li>
                                 ))}
-                                <li>
-                                    <button onClick={handleLogout} className={`text-primary font-medium text-black`}>
-                                        Logout
-                                    </button>
-                                </li>
                             </ul>
                             {/* <button type="button" className=" w-full bg-primary py-2 rounded-md text-white text-sm font-semibold">
                                 Donate
                             </button> */}
                         </div>
                     </div>
-                    <button type="button" className=" w-full bg-primary py-2 rounded-md text-white text-sm font-semibold">
-                        Donate
+                    <button onClick={handleLogout} type="button" className=" w-full bg-primary py-2 rounded-md text-white text-sm font-semibold">
+                    Logout
                     </button>
                 </div>
             </div>

@@ -8,8 +8,8 @@ const tokens = async () => {
 }
 
 const errorResponse = (error) => {
-    if(error.status == 401){
-        localStorage.removeItem('token')
+    if (error.status == 401) {
+        // localStorage.removeItem('token')
     }
 
     return { status: false, message: error.response.data.error.message }
@@ -136,6 +136,178 @@ export const logout = async (payload) => {
     try {
 
         const response = await apiClient.get(ENDPOINTS.logout, payload);
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        return errorResponse(error)
+    }
+};
+
+export const createContact = async (payload) => {
+    try {
+
+        const response = await apiClient.post(ENDPOINTS.createContact, payload);
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        return errorResponse(error)
+    }
+};
+
+export const getBloodGroup = async (payload) => {
+    try {
+
+        const response = await apiClient.get(ENDPOINTS.getBloodGroup, payload);
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        return errorResponse(error)
+    }
+};
+
+export const getHospital = async (payload) => {
+    try {
+
+        const response = await apiClient.get(ENDPOINTS.getHospital, payload);
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        return errorResponse(error)
+    }
+};
+
+export const getDoctor = async (payload) => {
+    try {
+
+        const response = await apiClient.get(ENDPOINTS.getDoctor, payload);
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        return errorResponse(error)
+    }
+};
+
+export const createAppointment = async (payload) => {
+    try {
+
+        const response = await apiClient.post(ENDPOINTS.createAppointment, payload);
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        return errorResponse(error)
+    }
+};
+
+export const getProfile = async (payload) => {
+    try {
+
+        const response = await apiClient.get(ENDPOINTS.getProfile, payload);
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        return errorResponse(error)
+    }
+};
+
+export const updateProfile = async (payload) => {
+    try {
+
+        const response = await apiClient.put(ENDPOINTS.updateProfile, payload);
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        return errorResponse(error)
+    }
+};
+
+
+export const updateProfilePic = async (payload) => {
+    try {
+
+        const response = await apiClient.post(ENDPOINTS.updateProfilePic, payload, { is_file: true });
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        console.log(error)
+        return errorResponse(error)
+    }
+};
+
+export const getAppointment = async (payload) => {
+    try {
+
+        const response = await apiClient.get(ENDPOINTS.getAppointment, payload);
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        return errorResponse(error)
+    }
+};
+
+export const deleteAppointment = async (id) => {
+    try {
+
+        const response = await apiClient.delete(`${ENDPOINTS.deleteAppointment}/${id}`);
         let res = await validRespones(response)
 
         if (!res.status) {

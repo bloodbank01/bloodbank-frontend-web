@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import handleChat from './handlechat';
+import handle from './handle';
 
 const rootReducer = combineReducers({
-  handleChat
+  handle
 });
 
 export default rootReducer;
