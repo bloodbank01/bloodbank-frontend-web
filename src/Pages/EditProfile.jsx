@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useAlert } from '../Common/Toasts/AlertProvider';
 import { useLoader } from '../Common/Loader/useLoader';
-import { getProfile, updateProfile, updateProfilePic } from '../Common/Apis/ApiService';
+import { getBloodGroup, getProfile, updateProfile, updateProfilePic } from '../Common/Apis/ApiService';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useSuccess } from '../Common/Toasts/SuccessProvider';
+import { bloodGroupList } from '../Redux/Action';
+import { useDispatch } from 'react-redux';
 
 const EditProfile = () => {
   const { alert } = useAlert();
@@ -167,7 +169,7 @@ const EditProfile = () => {
     { "name": "Kolkata" },
     { "name": "Howrah" },
     { "name": "Durgapur" }
-    ])
+  ])
   const [country, setCountry] = useState([
     { "name": "Canada" },
     { "name": "Brazil" },
@@ -181,7 +183,24 @@ const EditProfile = () => {
     { "name": "Mexico" }
   ]
   )
-  const bloodGroupList = useSelector(state => state.handle.bloodGroupList);
+  const bloodGroupLists = useSelector(state => state.handle.bloodGroupList);
+  let dispatch = useDispatch()
+  useEffect(() => {
+    (async () => {
+      startLoading()
+      const blood_group_list = await getBloodGroup()
+      stopLoading()
+
+      if (blood_group_list.status) {
+        dispatch(bloodGroupList(blood_group_list.data))
+      } else {
+        alert(blood_group_list.message)
+      }
+
+    })()
+  }, [third])
+
+
   const navigate = useNavigate();
   const [profilePic, setProfilePic] = useState(null)
   const handleGetProfile = async () => {
@@ -275,7 +294,7 @@ const EditProfile = () => {
       stopLoading()
       alert("Please Try Again!")
     }
-      console.log("🚀 ~ handleFileSelect ~ e.target.files[0]:", e.target.files[0])
+    console.log("🚀 ~ handleFileSelect ~ e.target.files[0]:", e.target.files[0])
   };
 
   return (
@@ -334,7 +353,7 @@ const EditProfile = () => {
                   <div>
                     <Field name="blood_id" as="select" className="w-full p-3 border rounded-md border-[#B5B5B5]">
                       <option value="">Select Blood Group</option>
-                      {bloodGroupList.map((el) => (
+                      {bloodGroupLists.map((el) => (
                         <option value={el.id}>{el.name}</option>
                       ))}
 
