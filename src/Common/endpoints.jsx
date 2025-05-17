@@ -1,8 +1,8 @@
 
 const URL = {
     // API 
-    // baseUrl : 'https://bloodbank-backend-e8cg.onrender.com/'
-    baseUrl : 'http://localhost:4061/'
+    baseUrl : 'https://bloodbank-backend-web.onrender.com/'
+    // baseUrl : 'http://localhost:4061/'
 }
 const ENDPOINTS = {
     // API Endpoints
