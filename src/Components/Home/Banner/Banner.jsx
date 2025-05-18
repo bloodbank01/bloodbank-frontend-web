@@ -1,9 +1,10 @@
 import React from 'react'
 import bannerImg from '../../../../public/images/banners/banner.png'
+import { Link } from 'react-router-dom'
 
 const Banner = () => {
     return (
-        <section className='w-full h-[400px] lg:h-[550px] xl:h-[620px] 2xl:h-[710px] bg-cover relative banner' style={{ backgroundImage: `url(${bannerImg})`}}>
+        <section className='w-full h-[400px] lg:h-[550px] xl:h-[620px] 2xl:h-[710px] bg-cover relative banner' style={{ backgroundImage: `url(${bannerImg})` }}>
             <div className="back-overlay bg-[rgba(0,0,0,0.1)]">
                 <div className="container mx-auto h-full">
                     <div className="w-full h-full flex items-center px-2">
@@ -18,7 +19,7 @@ const Banner = () => {
                             </div>
                             <div className='text-center banner-btn md:text-start'>
                                 <button type="button" className="bg-primary py-2 px-5 tracking-wider rounded-md text-white text-[12px] md:text-[14px] lg:text-[15px] xl:text-[16px] font-semibold">
-                                    Learn More
+                                    <Link to='/about'>Learn More</Link>
                                 </button>
                             </div>
                         </div>

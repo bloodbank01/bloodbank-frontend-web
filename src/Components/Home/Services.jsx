@@ -2,6 +2,7 @@ import React from 'react'
 import service1 from '../../../public/images/home/service1.png'
 import service2 from '../../../public/images/home/service2.png'
 import service3 from '../../../public/images/home/service3.png'
+import { Link } from 'react-router-dom'
 
 const Services = () => {
     return (
@@ -37,7 +38,7 @@ const Services = () => {
                                             </div>
                                             <div className="w-full flex justify-center md:justify-start">
                                                 <button type="button" className="mt-10 sm:mt-8 w-auto md:w-auto lg:mt-10 bg-primary py-2 text-[16px] px-8 tracking-wider rounded-md text-white md:text-[14px] lg:text-[15px] xl:text-[16px]">
-                                                    Read More
+                                                    <Link to='/about'>Read More</Link>
                                                 </button>
                                             </div>
                                         </div>
@@ -69,7 +70,7 @@ const Services = () => {
                                             </div>
                                             <div className="w-full flex justify-center md:justify-end">
                                                 <button type="button" className="mt-10 sm:mt-8 w-auto md:w-auto lg:mt-10 bg-primary py-2 text-[16px] px-8 tracking-wider rounded-md text-white md:text-[14px] lg:text-[15px] xl:text-[16px]">
-                                                    Read More
+                                                    <Link to='/about'>Read More</Link>
                                                 </button>
                                             </div>
                                         </div>
@@ -105,7 +106,7 @@ const Services = () => {
                                             </div>
                                             <div className="w-full flex justify-center md:justify-start">
                                                 <button type="button" className="mt-10 sm:mt-8 w-auto md:w-auto lg:mt-10 bg-primary py-2 text-[16px] px-8 tracking-wider rounded-md text-white md:text-[14px] lg:text-[15px] xl:text-[16px]">
-                                                    Read More
+                                                    <Link to='/about'>Read More</Link>
                                                 </button>
                                             </div>
                                         </div>

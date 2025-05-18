@@ -9,7 +9,8 @@ const tokens = async () => {
 
 const errorResponse = (error) => {
     if (error.status == 401) {
-        // localStorage.removeItem('token')
+        localStorage.clear();
+        setTimeout(() => window.location.href = '/sign-in', 2000);
     }
 
     return { status: false, message: error.response.data.error.message }

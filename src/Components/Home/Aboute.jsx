@@ -2,6 +2,7 @@ import React from 'react'
 import aboutImg from '../../../public/images/home/aboute.png'
 import about2Img from '../../../public/images/home/aboute2.png'
 import { BsCheck } from "react-icons/bs";
+import { Link } from 'react-router-dom'
 
 const Aboute = () => {
     return (
@@ -82,7 +83,7 @@ const Aboute = () => {
                                 <div>
                                     <div className="w-full flex justify-center md:justify-start">
                                         <button type="button" className="mt-9 w-full md:w-auto lg:mt-12 bg-primary py-2 text-[16px] px-8 tracking-wider rounded-md text-white md:text-[14px] lg:text-[15px] xl:text-[16px]">
-                                            Aboute Us
+                                            <Link to='/about'>Aboute Us</Link>
                                         </button>
                                     </div>
                                 </div>

@@ -39,9 +39,9 @@ const Header = () => {
             stopLoading()
 
             if (response.status) {
-                window.localStorage.clear();
-                navigate('/sign-in');
+                localStorage.clear();
                 success(response.message);
+                navigate('/sign-in');
             } else {
                 alert(response.message)
             }

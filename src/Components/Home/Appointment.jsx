@@ -49,7 +49,7 @@ const Appointment = () => {
 
             if (response.status) {
                 success(response.message)
-                window.location.reload()
+                navigate('/appointment')
             } else {
                 alert(response.message)
             }

@@ -114,7 +114,7 @@ const ViewAppointment = () => {
                                     {el?.hospital?.name}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {el?.doctor?.name ? el?.doctor?.name : 'Not Assign'}
+                                    {el?.doctor?.profile?.first_name ? `${el?.doctor?.profile?.first_name} ${el?.doctor?.profile?.last_name}` : 'Not Assign'}
                                 </td>
                                 <td className="px-6 py-4">
                                     {el?.appointment_date ? el?.appointment_date : 'Not Assign'}

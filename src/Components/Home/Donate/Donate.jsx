@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import exitImg from '../../../../public/images/home/exit.png'
 
 const Donate = () => {
@@ -6,12 +7,12 @@ const Donate = () => {
     const divRef = useRef(null);
     const [height, setHeight] = useState(0);
     const [width, setWidth] = useState(0);
-  
+
     useEffect(() => {
-      if (divRef.current) {
-          setHeight(divRef.current.offsetHeight);
-          console.log(divRef.current.offsetHeight, 'height')
-      }
+        if (divRef.current) {
+            setHeight(divRef.current.offsetHeight);
+            console.log(divRef.current.offsetHeight, 'height')
+        }
     }, []);
 
     useEffect(() => {
@@ -19,11 +20,11 @@ const Donate = () => {
             setWidth(divRef.current.offsetWidth);
             console.log(divRef.current.offsetWidth, 'width')
         }
-      }, []);
+    }, []);
 
     return (
         // <section className='w-full md:mt-[-50px] lg:mt-[-80px] px-2 py-4 md:py-0 z-1 relative'>
-        <section className={`w-full px-2 py-4 md:py-0 z-1 relative md:mt-[-60px] lg:mt-[-80px] 2xl:mt-[-100px] md:h-auto`} style={{height : width >= 767 ?`${height}px` : 'auto'}}>
+        <section className={`w-full px-2 py-4 md:py-0 z-1 relative md:mt-[-60px] lg:mt-[-80px] 2xl:mt-[-100px] md:h-auto`} style={{ height: width >= 767 ? `${height}px` : 'auto' }}>
             <div className="w-full relative h-auto">
                 <div ref={divRef} className="w-full md:absolute z-10">
                     <div className="container mx-auto">
@@ -37,7 +38,7 @@ const Donate = () => {
                                             <div className="icon w-full flex justify-end pt-4">
                                                 <button>
                                                     <div className='w-2/4 lg:w-2/3 '>
-                                                        <img className='w-full' src={exitImg} alt="exit icon" />
+                                                        <Link to="/appointment"><img className='w-full' src={exitImg} alt="exit icon" /></Link>
                                                     </div>
                                                 </button>
                                             </div>
@@ -52,7 +53,7 @@ const Donate = () => {
                                             <div className="icon w-full flex justify-end pt-4">
                                                 <button>
                                                     <div className='w-2/4 lg:w-2/3 '>
-                                                        <img className='w-full' src={exitImg} alt="exit icon" />
+                                                        <Link to="/appointment"> <img className='w-full' src={exitImg} alt="exit icon" /></Link>
                                                     </div>
                                                 </button>
                                             </div>

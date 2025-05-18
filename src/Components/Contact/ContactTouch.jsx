@@ -15,43 +15,43 @@ const ContactTouch = () => {
   const { success } = useSuccess()
   const { startLoading, stopLoading } = useLoader();
 
-  
-const initialValues = {
-  first_name: '',
-  last_name: '',
-  email: '',
-  phone_no: '',
-  message: ''
-}
 
-const validationSchema = Yup.object({
-  first_name: Yup.string().required('First name is required'),
-  last_name: Yup.string().required('Last name is required'),
-  email: Yup.string().email('Invalid email address').required('Email is required'),
-  phone_no: Yup.string().required('Mobile number is required'),
-  message: Yup.string().required('Message is required')
-})
-
-const onSubmit = async (data) => {
-  console.log('Form data:', data)
-  try {
-    startLoading()
-    const response = await createContact(data)
-    stopLoading()
-
-    if (response.status) {
-      success(response.message)
-      navigate('/')
-    } else {
-      alert(response.message)
-    }
-
-  } catch (error) {
-    console.log(error)
-    stopLoading()
-    alert("Please Try Again!")
+  const initialValues = {
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone_no: '',
+    message: ''
   }
-}
+
+  const validationSchema = Yup.object({
+    first_name: Yup.string().required('First name is required'),
+    last_name: Yup.string().required('Last name is required'),
+    email: Yup.string().email('Invalid email address').required('Email is required'),
+    phone_no: Yup.string().required('Mobile number is required'),
+    message: Yup.string().required('Message is required')
+  })
+
+  const onSubmit = async (data) => {
+    console.log('Form data:', data)
+    try {
+      startLoading()
+      const response = await createContact(data)
+      stopLoading()
+
+      if (response.status) {
+        success(response.message)
+        navigate('/')
+      } else {
+        alert(response.message)
+      }
+
+    } catch (error) {
+      console.log(error)
+      stopLoading()
+      alert("Please Try Again!")
+    }
+  }
 
 
   return (

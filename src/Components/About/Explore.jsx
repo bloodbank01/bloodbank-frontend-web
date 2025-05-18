@@ -1,5 +1,7 @@
 import React from 'react'
 import explore from '../../../public/images/about/explore.png'
+import { Link } from 'react-router-dom'
+
 
 const Explore = () => {
     return (
@@ -22,7 +24,7 @@ const Explore = () => {
                                 <div>
                                     <div className="w-full flex justify-center md:justify-start">
                                         <button type="button" className="mt-4 w-full md:w-auto lg:mt-12 bg-web-primary py-2 text-[16px] px-8 tracking-wider rounded-md text-white md:text-[14px] lg:text-[15px] xl:text-[16px]">
-                                            Explore Now
+                                        <Link to='/about'>Explore Now</Link>
                                         </button>
                                     </div>
                                 </div>

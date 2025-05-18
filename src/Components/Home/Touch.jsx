@@ -6,6 +6,7 @@ import { useAlert } from '../../Common/Toasts/AlertProvider'
 import { useSuccess } from '../../Common/Toasts/SuccessProvider'
 import { useLoader } from '../../Common/Loader/useLoader'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
 const Touch = () => {
 
@@ -31,7 +32,7 @@ const Touch = () => {
     message: Yup.string().required('Message is required')
   })
 
-  const onSubmit =async (data) => {
+  const onSubmit = async (data) => {
     console.log('Form data:', data)
     try {
       startLoading()
@@ -65,7 +66,7 @@ const Touch = () => {
                   <p className='text-[#888888] text-[14px]'>Which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when untrammelled and when nothing prevents</p>
 
                   <button type="button" className="mt-10 w-full md:w-auto bg-primary py-2 text-[16px] px-8 tracking-wider rounded-sm text-white md:text-[14px] lg:text-[15px] xl:text-[16px]">
-                    Contact Us
+                    <Link to='/contact-us'>Contact Us</Link>
                   </button>
                 </div>
               </div>
